@@ -1,0 +1,49 @@
+https://www.youtube.com/watch?v=PKwu15ldZ7k
+LOGIN FIREBASE
+
+1. CREATE PROJECTS 
+create new project - Tut-Auth-Development 
+//will have 2: dev and production 
+disable google analytics 
+
+authentication tab > sign-in method 
+    enable email 
+
+create production version - Tut-Auth-Production 
+//do exact same as dev version 
+authentication tab > settings > Authorized Domains 
+//remove locahost from domains - only development will have access 
+    //dont want others to access this through localhost 
+    //only access through our own server 
+
+
+2. GET API KEYS 
+Project overview tab > web app btn 
+name - web-auth-development 
+//register app 
+
+copy firebaseConfig 
+place into .env file.local 
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+
+};
+
+
+3. SETUP FIREBASE LIBRARY
+
+npm i firebase
+
+IN src/firebase.js:
+
+import library and auth module 
+init firebase with env variables given from the site 
+export the firebase app and the auth functionality 
+
+4. CLEAN UP (for this tutorial)
+
+delete all css and test files
+go through js files and remove css and js files 
+src/components 
+move App.js to components/App.js 
