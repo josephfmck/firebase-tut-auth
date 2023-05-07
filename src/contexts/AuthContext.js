@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import { firebaseAuth } from "../firebase";
 
 //*Context Function
 
@@ -20,13 +20,13 @@ export function AuthProvider({ children }) {
     //?returns promise
   function signup(email, password) {
     //!Firebase auth method
-    return auth.createUserWithEmailAndPassword(email, password);
+    return firebaseAuth.createUserWithEmailAndPassword(email, password);
   }
 
   useEffect(() => {
     //*!firebase auth method - 
     //sets state during component lifecycle 
-      const unsubscribe = auth.onAuthStateChanged((user) => {
+      const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
         //sets state to obj or null 
         setCurrentUser(user);
       })

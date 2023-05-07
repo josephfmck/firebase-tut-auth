@@ -16,6 +16,6 @@ const app = firebase.initializeApp({
 
 //export variable for authentication function
     //!--> AuthContext.js 
-export const auth = app.auth();
+export const firebaseAuth = app.auth();
 //export firebase to use in application
 export default app;
