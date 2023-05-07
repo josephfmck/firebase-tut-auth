@@ -47,3 +47,14 @@ delete all css and test files
 go through js files and remove css and js files 
 src/components 
 move App.js to components/App.js 
+
+5. Sign Up component 
+
+component/Signup.js 
+    useRef for signup form data
+render in <App/>
+index.js import bootstrap 
+
+center <Signup/> with <App/> styling 
+
+6. Authentication
