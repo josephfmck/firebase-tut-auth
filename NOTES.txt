@@ -57,10 +57,29 @@ index.js import bootstrap
 
 center <Signup/> with <App/> styling 
 
-6. Authentication
+6. Authentication Context
 
 //Will use context to access auth anywhere in app 
 components/AuthContext.js 
 //Context https://www.youtube.com/watch?v=5LrDIWkK_Bc&ab_channel=WebDevSimplified
 
 
+grab firebase authentication
+create context -
+    provides context of all state regarding authentication 
+    currentUser state
+    signup firebase func
+    unsubscribe func - cleans up auth state when component unmounts
+    pass on authentication state to the provider's children components (aka all components wrapped by provider)
+
+    pass <AuthContext/> it to <Signup/>
+
+7 On Submit async form submit 
+<Signup/>
+handle form submission
+    prevent default 
+    check passwords match
+    setup async call to firebase with signup 
+        submits email and password to firebase
+    else error with loading state 
+        disabling btn while loading

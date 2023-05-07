@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 //Firebase Auth Context
-import { useAuth } from "../contexts/AuthContext";
+import { useAuthContext } from "../contexts/AuthContext";
 
 export default function Signup() {
   const emailRef = useRef();
@@ -9,7 +9,7 @@ export default function Signup() {
   const confirmPasswordRef = useRef();
   //*firebase Auth Context: 
     //signup func, currentUser state
-  const { signup } = useAuth();
+  const { signup } = useAuthContext();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
