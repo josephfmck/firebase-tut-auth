@@ -3,7 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 //Firebase Auth Context
 import { useAuth } from "../contexts/AuthContext";
 
-export default function Signup() {
+function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
@@ -68,7 +68,7 @@ export default function Signup() {
               ></Form.Control>
             </Form.Group>
             {/* disable t/f, if currently loading, dont want to resubmit form */}
-            <Button type="submit" className="w-100" disable={loading}>
+            <Button type="submit" className="w-100">
               Sign Up
             </Button>
           </Form>
@@ -80,3 +80,5 @@ export default function Signup() {
     </>
   );
 }
+
+export default Signup;
