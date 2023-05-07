@@ -57,7 +57,7 @@ index.js import bootstrap
 
 center <Signup/> with <App/> styling 
 
-6. Authentication Context
+6. Authentication
 
 //Will use context to access auth anywhere in app 
 components/AuthContext.js 
