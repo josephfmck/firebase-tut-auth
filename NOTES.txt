@@ -83,3 +83,7 @@ handle form submission
         submits email and password to firebase
     else error with loading state 
         disabling btn while loading
+
+8 error ui 
+
+    ternary for signup when theres an error show alert
