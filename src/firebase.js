@@ -1,21 +1,21 @@
-//library
-import firebase from 'firebase/app';
-//authentication module
-import "firebase/auth";
+//*Firebase setup
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
 
-//init 
-    //config values from firebase
-const app = firebase.initializeApp({
+// TODO: Replace the following with your app's Firebase project configuration
+const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_PROJECT_ID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_APP_ID
-});
+};
 
-//export variable for authentication function
-    //!--> AuthContext.js 
-export const firebaseAuth = app.auth();
-//export firebase to use in application
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export const firebaseAuth = auth;
 export default app;

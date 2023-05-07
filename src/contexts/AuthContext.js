@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
         //*returning currentUser to use anywhere in App
   return (
     <div>
-      <AuthContext.Provider authStateProp={authenticationState} />
+      <AuthContext.Provider value={authenticationState} />
       {children}
       <AuthContext.Provider />
     </div>
