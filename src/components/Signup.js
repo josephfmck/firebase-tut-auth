@@ -9,18 +9,22 @@ function Signup() {
   const confirmPasswordRef = useRef();
   //*firebase Auth Context: 
     //signup func, currentUser state
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [signUpLoading, setSignupLoading] = useState(false);
 
   //!EVENTS
   async function handleSubmit(e) {
     e.preventDefault();
 
+    setSignupLoading(true);
+
     //err check passwords match
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       //sets state error msg and exits out of func with return
-      return setError("Passwords do not match");
+      setError("Passwords do not match");
+      setSignupLoading(false);
+      return 
     }
 
     //*check if fails. exec signup async func to firebase
@@ -32,12 +36,15 @@ function Signup() {
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
-        confirmPasswordRef.current.value
       );
-    } catch {
+      setSignupLoading(false);
+      return;
+    } catch(error) {
       setError("Failed to create an account");
+      setError(error.message)
+      setSignupLoading(false);
+      return;
     }
-    setLoading(false);
   }
 
   return (
@@ -45,6 +52,8 @@ function Signup() {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Signup</h2>
+          {/* use this to visually see email after signup worked */}
+          {currentUser.email}
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -68,7 +77,7 @@ function Signup() {
               ></Form.Control>
             </Form.Group>
             {/* disable t/f, if currently loading, dont want to resubmit form */}
-            <Button type="submit" className="w-100">
+            <Button type="submit" className="w-100" disabled={signUpLoading}>
               Sign Up
             </Button>
           </Form>

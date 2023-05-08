@@ -87,3 +87,30 @@ handle form submission
 8 error ui 
 
     ternary for signup when theres an error show alert
+
+
+9 REAL ERROR, PROCEED WITH CAUTION.
+Firebase is updated to newer version than in video
+Continue and make sure to understand the firebase connection methods fully since they are changed
+everything else stays the same
+
+
+
+10. WORKING SIGNUP 
+
+<AuthContext/>
+setup loading for checking if user already logged in with onAuthStateChanged 
+    if loading dont render
+    else render signup form
+<Signup/>
+    signUpLoading false on page load
+    async submit event - loading true, waiting for firebase response
+    loading false after one of following: 
+        password match error 
+        firebase error
+        firebase success - signup successful
+    loading true - disables the button 
+    render out the email in ui to see if successful, commented out for now
+
+NOTE: Password must be 6 characters long
+    firebase auth website will show the user that signed up info
