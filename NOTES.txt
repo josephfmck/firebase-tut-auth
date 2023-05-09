@@ -140,3 +140,6 @@ dashboard "/" route -> homepage
 
 
 2. Dashboard component 
+
+components/Dashboard 
+
