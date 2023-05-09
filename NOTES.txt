@@ -133,7 +133,7 @@ setup <App/> router
 <Router></Router> is within global container 
 <AuthProvider></AuthProvider> and components/pages lie within 
 
-<Router/> -> <AuthProvider/> -> <Switch/> -> <Route/>
+<Router/> -> <AuthProvider/> -> <Routes/> -> <Route/>
 
 "/signup" route established 
 dashboard "/" route -> homepage
@@ -142,4 +142,28 @@ dashboard "/" route -> homepage
 2. Dashboard component 
 
 components/Dashboard 
+homepage "/" route 
+
+
+3. Login page 
+
+components/Login 
+
+similar to <Signup/>
+
+delete password confirmation functionality 
+change button and title to login 
+change ending "no account" ?? link to Link to <Signup/>
+
+
+IN <Signup/> do the same with Link to <Login/> if they have account 
+
+
+4. Firebase Login function 
+
+IN <Login/> 
+switch signup function from firebase auth to login function 
+
+//signup and login methods are coming from <AuthContext/>
+
 

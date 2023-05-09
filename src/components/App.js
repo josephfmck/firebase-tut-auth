@@ -1,5 +1,6 @@
 import Dashboard from "./Dashboard";
 import Signup from "./Signup";
+import Login from "./Login";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
 //*browser router renamed as Router, Routes determines which page currently on, Route - which page going to
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard/>} />
               <Route path="/signup" element={<Signup/>} />
+              <Route path="/login" element={<Login/>} />
             </Routes>
           </AuthProvider>
         </Router>
