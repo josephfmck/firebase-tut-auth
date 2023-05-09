@@ -124,6 +124,19 @@ NOTE: Password must be 6 characters long
     
 BRANCH A-2 
 
+1. Routes 
+
+Routing react router
+install react-router-dom 
+setup <App/> router 
+
+<Router></Router> is within global container 
+<AuthProvider></AuthProvider> and components/pages lie within 
+
+<Router/> -> <AuthProvider/> -> <Switch/> -> <Route/>
+
+"/signup" route established 
+dashboard "/" route -> homepage
 
 
-
+2. Dashboard component 
