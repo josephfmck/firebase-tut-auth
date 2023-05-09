@@ -2,23 +2,24 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 //Firebase Auth Context
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
     //*firebase Auth Context: 
       //signup func, currentUser state
-    const { signup, currentUser } = useAuth();
+    const { login, currentUser } = useAuth();
     const [error, setError] = useState("");
-    const [signUpLoading, setSignupLoading] = useState(false);
-  
+    const [loginLoading, setLoginLoading] = useState(false);
+    const navigate = useNavigate();
+
+
     //!EVENTS
     async function handleSubmit(e) {
       e.preventDefault();
   
-      setSignupLoading(true);
-  
+      setLoginLoading(true);
   
       //*check if fails. exec signup async func to firebase
       try {
@@ -26,16 +27,18 @@ function Login() {
         setError("");
   
         //*firebase signup func, send form data to firebase to authenticate
-        await signup(
+        await login(
           emailRef.current.value,
           passwordRef.current.value,
         );
-        setSignupLoading(false);
+        //redirect to homepage
+        navigate("/");
+        setLoginLoading(false);
         return;
       } catch(error) {
-        setError("Failed to create an account");
+        setError("Failed to sign in");
         setError(error.message)
-        setSignupLoading(false);
+        setLoginLoading(false);
         return;
       }
     }
@@ -45,8 +48,6 @@ function Login() {
         <Card>
           <Card.Body>
             <h2 className="text-center mb-4">Login</h2>
-            {/* use this to visually see email after signup worked */}
-            {/* {currentUser ? currentUser.email : ""} */}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
@@ -62,7 +63,7 @@ function Login() {
                 ></Form.Control>
               </Form.Group>
               {/* disable t/f, if currently loading, dont want to resubmit form */}
-              <Button type="submit" className="w-100" disabled={signUpLoading}>
+              <Button type="submit" className="w-100" disabled={loginLoading}>
                 Login
               </Button>
             </Form>

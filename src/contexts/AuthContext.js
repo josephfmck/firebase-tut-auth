@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../firebase";
 //*Context Function
 
@@ -11,21 +11,29 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+
 //*Provides context 
 export function AuthProvider({ children }) {
   //!STATE
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  //*Get current user through ASYNC form submission
+  //*Create and get current user through ASYNC form submission
     //?returns promise
   function signup(email, password) {
     //!Firebase auth method
     return createUserWithEmailAndPassword(firebaseAuth, email, password);
   }
 
+  //*Login user through ASYNC form submission
+    //?checks firebase for already signed up user
+  function login(email, password) {
+    //!Firebase auth method
+    return signInWithEmailAndPassword(firebaseAuth, email, password);
+  }
+
   useEffect(() => {
-    //*!firebase auth method - did verification to set user
+    //*!firebase auth method - tells us what user signed up as State 
     //sets state during component lifecycle 
                 //?current user starts out as null and then is set
                 //?when user already signed in it connects user 
@@ -44,7 +52,8 @@ export function AuthProvider({ children }) {
   //*State
   const authenticationState = {
     currentUser,
-    signup
+    signup,
+    login
   };
 
   //!RENDER
@@ -61,4 +70,5 @@ export function AuthProvider({ children }) {
 }
 
 
-//!--> Signup.js
+
+//!--> useAuth -> Signup.js & Login.js

@@ -163,7 +163,18 @@ IN <Signup/> do the same with Link to <Login/> if they have account
 
 IN <Login/> 
 switch signup function from firebase auth to login function 
-
 //signup and login methods are coming from <AuthContext/>
 
+change error msg for login 
 
+IN <AuthContext/>
+
+setup login async func from firebase
+
+NOTE: login and signup funcs are modular - you could remove firebase auth methods and replace with your own server methods
+
+KNOW login works when no error appears. 
+
+Redirect back to homepage/dashboard after login successful
+
+useNavigate hook in both <Login/> and <Signup/>

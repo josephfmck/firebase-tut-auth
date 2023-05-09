@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 //Firebase Auth Context
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const emailRef = useRef();
@@ -13,6 +13,7 @@ function Signup() {
   const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [signUpLoading, setSignupLoading] = useState(false);
+  const navigate = useNavigate();
 
   //!EVENTS
   async function handleSubmit(e) {
@@ -38,6 +39,8 @@ function Signup() {
         emailRef.current.value,
         passwordRef.current.value,
       );
+      //redirect to homepage
+      navigate("/");
       setSignupLoading(false);
       return;
     } catch(error) {
