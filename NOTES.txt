@@ -1,5 +1,8 @@
+
 https://www.youtube.com/watch?v=PKwu15ldZ7k
 LOGIN FIREBASE
+
+BRANCH A-1
 
 1. CREATE PROJECTS 
 create new project - Tut-Auth-Development 
@@ -114,3 +117,13 @@ setup loading for checking if user already logged in with onAuthStateChanged
 
 NOTE: Password must be 6 characters long
     firebase auth website will show the user that signed up info
+
+
+
+
+    
+BRANCH A-2 
+
+
+
+
