@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { firebaseAuth } from "../firebase";
 //*Context Function
 
@@ -32,6 +32,12 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(firebaseAuth, email, password);
   }
 
+  function logout() {
+    //!Firebase auth method
+    return signOut(firebaseAuth);
+  }
+
+
   useEffect(() => {
     //*!firebase auth method - tells us what user signed up as State 
     //sets state during component lifecycle 
@@ -53,7 +59,8 @@ export function AuthProvider({ children }) {
   const authenticationState = {
     currentUser,
     signup,
-    login
+    login,
+    logout
   };
 
   //!RENDER

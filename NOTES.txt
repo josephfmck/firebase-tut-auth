@@ -178,3 +178,52 @@ KNOW login works when no error appears.
 Redirect back to homepage/dashboard after login successful
 
 useNavigate hook in both <Login/> and <Signup/>
+
+
+
+BRANCH A-3
+
+1. <Dashboard/>
+setup logout event functionality with error handling 
+
+NOW UI setup for user's profile 
+
+show user's email - 
+    grab user's info from Auth Context 
+
+add update profile button - 
+    links update profile route  "/update-profile"
+
+2. Logout functionality 
+
+firebase logout function from auth context 
+
+<AuthContext/> pull in firebase method signOut()
+
+handle async logout event with btn 
+redirect to login page 
+
+3. Private routes 
+ISSUE: when we click log out - 
+    instead of redirect it gives rendering error 
+    because its rendering out <Dashboard/> even tho logged out 
+        PROBLEM: still allowed to access dashboard when logged out 
+        SOLUTION: private routes 
+
+components/PrivateRoutes 
+
+Conditionally render a route based on if user is logged in
+    Props: component - component to render, ...rest is any other props passed in
+
+IN <App/>
+    change the Dashboard's <Route/> to <PrivateRoute/> 
+    so now is a protected/private route 
+NOW <Dashboard/> is only rendered when user is logged in 
+otherwise redirected to login page 
+
+
+EDIT: 
+    <App/> Dashboard route is a route within <PrivateRoute/>
+    PrivateRoute changed using Outlet and Navigate 
+        same logic     
+    Log out Firebase auth func fixed.

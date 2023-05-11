@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import { AuthProvider } from "../contexts/AuthContext";
 //*browser router renamed as Router, Routes determines which page currently on, Route - which page going to
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
         <Router>
           <AuthProvider>
             <Routes>
-              <Route path="/" element={<Dashboard/>} />
+              <Route exact path='/' element={<PrivateRoute/>}>
+                <Route exact path='/' element={<Dashboard/>}/>
+              </Route>
               <Route path="/signup" element={<Signup/>} />
               <Route path="/login" element={<Login/>} />
             </Routes>
