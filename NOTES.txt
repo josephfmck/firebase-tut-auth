@@ -227,3 +227,37 @@ EDIT:
     PrivateRoute changed using Outlet and Navigate 
         same logic     
     Log out Firebase auth func fixed.
+
+
+A-4 Password reset 
+
+IN <Login/>
+
+    forgot password link to /forgot-password 
+
+IN <App/> 
+    Route for forgot password 
+
+/components/ForgotPassword
+
+use <Login/> as template 
+no need for password form info (passwordRef)
+reset password btn 
+change forgot password page Link to Login page  
+
+IN <AuthContext/>
+    resetPassword func 
+        sendPasswordResetEmail - firebase func 
+sends email to users email to reset password 
+
+IN <ForgotPassword/>
+exec resetPassword()
+//instead of redirect to home page - setMessage state lets us know success 
+
+<Alert/> for success message 
+
+TEST OUT 
+https://temp-mail.org/en/
+//temporary emails 
+
+//reset password email link - opens up new page to confirm a new password

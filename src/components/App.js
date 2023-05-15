@@ -6,6 +6,7 @@ import { AuthProvider } from "../contexts/AuthContext";
 //*browser router renamed as Router, Routes determines which page currently on, Route - which page going to
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import ForgotPassword from "./ForgotPassword";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               </Route>
               <Route path="/signup" element={<Signup/>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/forgot-password" element={<ForgotPassword/>} />
             </Routes>
           </AuthProvider>
         </Router>

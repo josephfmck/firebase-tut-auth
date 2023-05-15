@@ -4,14 +4,14 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+function ForgotPassword() {
     const emailRef = useRef();
-    const passwordRef = useRef();
     //*firebase Auth Context: 
       //signup func, currentUser state
-    const { login, currentUser } = useAuth();
+    const { resetPassword } = useAuth();
     const [error, setError] = useState("");
-    const [loginLoading, setLoginLoading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [fpLoading, setFPLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -19,26 +19,25 @@ function Login() {
     async function handleSubmit(e) {
       e.preventDefault();
   
-      setLoginLoading(true);
+      setFPLoading(true);
   
       //*check if fails. exec signup async func to firebase
       try {
         //?no err, reset state
+        setMessage("");
         setError("");
   
         //*firebase signup func, send form data to firebase to authenticate
-        await login(
+        await resetPassword(
           emailRef.current.value,
-          passwordRef.current.value,
         );
-        //redirect to homepage
-        navigate("/");
-        setLoginLoading(false);
+        //success message
+        setMessage("Check your inbox for further instructions"); 
+        setFPLoading(false);
         return;
       } catch(error) {
-        setError("Failed to sign in");
-        setError(error.message)
-        setLoginLoading(false);
+        setError(`Failed to reset password - ${error.message}`);
+        setFPLoading(false);
         return;
       }
     }
@@ -47,28 +46,21 @@ function Login() {
       <>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">Login</h2>
+            <h2 className="text-center mb-4">Password Reset</h2>
             {error && <Alert variant="danger">{error}</Alert>}
+            {message && <Alert variant="success">{message}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} required></Form.Control>
               </Form.Group>
-              <Form.Group id="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  ref={passwordRef}
-                  required
-                ></Form.Control>
-              </Form.Group>
               {/* disable t/f, if currently loading, dont want to resubmit form */}
-              <Button type="submit" className="w-100" disabled={loginLoading}>
-                Login
+              <Button type="submit" className="w-100" disabled={fpLoading}>
+                Reset Password
               </Button>
             </Form>
             <div className="w-100 text-center mt-2">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link to="/login">Login</Link>
             </div>
           </Card.Body>
         </Card>
@@ -79,6 +71,6 @@ function Login() {
     );
 }
 
-export default Login
+export default ForgotPassword;
 
 

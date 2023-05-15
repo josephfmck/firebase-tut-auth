@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { firebaseAuth } from "../firebase";
 //*Context Function
 
@@ -37,6 +37,11 @@ export function AuthProvider({ children }) {
     return signOut(firebaseAuth);
   }
 
+  //*Sends email to user's passed in email to reset password
+  function resetPassword(email) {
+    return sendPasswordResetEmail(firebaseAuth, email);
+  }
+
 
   useEffect(() => {
     //*!firebase auth method - tells us what user signed up as State 
@@ -60,7 +65,8 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
-    logout
+    logout,
+    resetPassword
   };
 
   //!RENDER
@@ -78,4 +84,4 @@ export function AuthProvider({ children }) {
 
 
 
-//!--> useAuth -> Signup.js & Login.js
+//!--> useAuth -> Signup.js & Login.js etc. components
