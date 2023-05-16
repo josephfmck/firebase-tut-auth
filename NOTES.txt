@@ -261,3 +261,38 @@ https://temp-mail.org/en/
 //temporary emails 
 
 //reset password email link - opens up new page to confirm a new password
+
+
+A-5 Update Profile 
+
+<UpdateProfile/>
+
+IN <App/> set as private route - access only when logged in 
+
+IN <UpdateProfile/> copy <Signup/> as template 
+    setup form: update your email and password 
+    unless changed -
+        email will be default of logged in user 
+        password will be same 
+    cancel btn redirect to dashboard
+    remove required field on passwords 
+
+IN <AuthContext/>
+    update email and password functionality 
+    2 seperate funcs 
+    firebase auth methods - currentUser.updateEmail and updatePassword
+
+
+IN <UpdateProfile/>
+    Handling Submit:
+        setup promises array - since have 2 seperate funcs this time 
+        check if email, password, or both are being updated
+            add the ones being updated to promises arr 
+        exec all promises within arr
+            success: redirect to "/"
+            fail: error message 
+            End: resets loading back to false 
+        Summary: 
+            check which fields being updated
+            add those to promise arr 
+            exec them in one go with Promise.all  
